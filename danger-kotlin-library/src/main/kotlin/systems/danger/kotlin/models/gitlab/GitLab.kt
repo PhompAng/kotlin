@@ -1,12 +1,14 @@
-@file:UseSerializers(DateSerializer::class)
+@file:UseSerializers(DateSerializer::class, LocalDateSerializer::class)
 
 package systems.danger.kotlin.models.gitlab
 
 import kotlinx.datetime.Instant
+import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
 import systems.danger.kotlin.models.serializers.DateSerializer
+import systems.danger.kotlin.models.serializers.LocalDateSerializer
 
 @Serializable
 data class GitLab(
@@ -145,13 +147,13 @@ data class GitLabMilestone(
     val createdAt: Instant,
     val description: String,
     @SerialName("due_date")
-    val dueDate: Instant?,
+    val dueDate: LocalDate?,
     val id: Int,
     val iid: Int,
     @SerialName("project_id")
     val projectID: Int,
     @SerialName("start_date")
-    val startDate: Instant?,
+    val startDate: LocalDate?,
     val state: GitLabMilestoneState,
     val title: String,
     @SerialName("updated_at")
