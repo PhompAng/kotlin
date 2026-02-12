@@ -1,7 +1,6 @@
 package systems.danger.kotlin.models.serializers
 
 import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDate
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializer
@@ -32,24 +31,6 @@ object DateSerializer : KSerializer<Instant> {
         } catch(e: Throwable) {
             Instant.fromEpochMilliseconds(ISO8601DateFormat().parse(value).toInstant().toEpochMilli())
         }
-    }
-}
-
-@ExperimentalSerializationApi
-@Serializer(forClass = LocalDateSerializer::class)
-object LocalDateSerializer : KSerializer<LocalDate> {
-
-    override val descriptor: SerialDescriptor
-        get() = PrimitiveSerialDescriptor("kotlinx.datetime.LocalDate", PrimitiveKind.STRING)
-
-    override fun serialize(encoder: Encoder, value: LocalDate) {
-        // Implementation not needed for now
-    }
-
-    override fun deserialize(decoder: Decoder): LocalDate {
-        val value = decoder.decodeString()
-
-        return LocalDate.parse(value)
     }
 }
 
